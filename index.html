@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Habit Tracker - KrishBelief</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Login Overlay -->
+    <div id="loginOverlay" class="login-overlay">
+        <div class="login-container">
+            <h1>Daily Habit Tracker</h1>
+            <p class="login-subtitle">Welcome back! Please login to continue.</p>
+            
+            <div id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Enter username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter password" required>
+                </div>
+                <button type="button" class="btn-primary" onclick="login()">Login</button>
+                <p id="loginError" class="error-message"></p>
+            </div>
+
+            <div id="registerForm" style="display: none;">
+                <div class="form-group">
+                    <label for="newUsername">Choose Username</label>
+                    <input type="text" id="newUsername" placeholder="Choose username" required>
+                </div>
+                <div class="form-group">
+                    <label for="newPassword">Choose Password</label>
+                    <input type="password" id="newPassword" placeholder="Choose password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" placeholder="Confirm password" required>
+                </div>
+                <button type="button" class="btn-primary" onclick="register()">Create Account</button>
+                <p id="registerError" class="error-message"></p>
+            </div>
+
+            <div class="auth-toggle">
+                <p id="toggleText">Don't have an account? <a href="#" onclick="toggleAuth()">Register</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content (hidden until logged in) -->
+    <div id="mainContent" class="container" style="display: none;">
+        <header>
+            <h1>Daily Habit Tracker</h1>
+            <div class="header-controls">
+                <p class="subtitle">Habit Start Date: <input type="date" id="startDate" value="2026-01-01"></p>
+                <button class="btn-logout" onclick="logout()">Logout</button>
+            </div>
+        </header>
+
+        <div class="summary-stats">
+            <div class="stat-box">
+                <h3>100% Achieved</h3>
+                <p id="fullyAchieved">0</p>
+            </div>
+            <div class="stat-box">
+                <h3>50% Achieved</h3>
+                <p id="halfAchieved">0</p>
+            </div>
+            <div class="stat-box">
+                <h3>0% Lazy/Rest Days</h3>
+                <p id="lazyDays">0</p>
+            </div>
+            <div class="stat-box">
+                <h3>Best Habit</h3>
+                <p id="bestHabit">-</p>
+            </div>
+            <div class="stat-box">
+                <h3>Worst Habit</h3>
+                <p id="worstHabit">-</p>
+            </div>
+        </div>
+
+        <div class="tracker-table">
+            <table id="habitTable">
+                <thead>
+                    <tr>
+                        <th rowspan="3" class="habit-name-header">Habit</th>
+                        <th colspan="7">Week 1</th>
+                        <th colspan="7">Week 2</th>
+                        <th colspan="7">Week 3</th>
+                        <th colspan="7">Week 4</th>
+                        <th colspan="6">Week 5</th>
+                        <th rowspan="3">Finished Days</th>
+                        <th rowspan="3">Consistency Score</th>
+                    </tr>
+                    <tr>
+                        <th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th>
+                        <th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th>
+                        <th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th>
+                        <th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th>
+                        <th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th><th>Mon</th><th>Tue</th>
+                    </tr>
+                    <tr>
+                        <th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th>
+                        <th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th>
+                        <th>15</th><th>16</th><th>17</th><th>18</th><th>19</th><th>20</th><th>21</th>
+                        <th>22</th><th>23</th><th>24</th><th>25</th><th>26</th><th>27</th><th>28</th>
+                        <th>29</th><th>30</th><th>31</th>
+                    </tr>
+                </thead>
+                <tbody id="habitBody">
+                    <!-- Habits will be generated by JavaScript -->
+                </tbody>
+                <tfoot>
+                    <tr class="tasks-completed">
+                        <td>Tasks Completed</td>
+                        <td colspan="31" id="tasksCompleted"></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="percent-completed">
+                        <td>% Completed</td>
+                        <td colspan="31" id="percentCompleted"></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <footer>
+            <p>Powered By KrishBelief</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
