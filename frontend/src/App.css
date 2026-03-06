@@ -117,11 +117,10 @@
   gap: 10px;
 }
 
-.hero-toolbar label {
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+.signed-in {
+  margin: 0;
   color: var(--muted);
+  font-size: 0.9rem;
 }
 
 select,
@@ -131,7 +130,6 @@ button {
   font: inherit;
 }
 
-.hero-toolbar select,
 .form-grid input,
 .form-grid textarea,
 .form-grid select {
@@ -160,7 +158,6 @@ button {
 
 .primary-btn,
 .ghost-btn,
-.demo-logins button,
 .action-row button,
 .mini-card > button {
   border: none;
@@ -263,30 +260,6 @@ button:disabled {
 .auth-card h2 {
   margin: 0;
   font-size: 1.15rem;
-}
-
-.demo-logins {
-  background: linear-gradient(120deg, var(--teal-soft), #edf9f4);
-  padding: 12px;
-  border-radius: 12px;
-}
-
-.demo-logins p {
-  margin: 0;
-  color: #25665d;
-  font-size: 0.86rem;
-}
-
-.demo-logins div {
-  margin-top: 8px;
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.demo-logins button {
-  background: rgba(255, 255, 255, 0.94);
-  color: #174a43;
 }
 
 .metrics-grid {

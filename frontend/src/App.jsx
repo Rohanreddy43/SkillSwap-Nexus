@@ -196,17 +196,6 @@ function App() {
     return marketplaceOfferings.filter((skill) => skill.ownerId === Number(swapForm.receiverId))
   }, [marketplaceOfferings, swapForm.receiverId])
 
-  const handleDemoLogin = async (email) => {
-    try {
-      const user = await loginUser({ email, password: 'pass1234' })
-      setCurrentUser(user)
-      setLoginForm(initialLoginForm)
-      notify('success', `Welcome back, ${user.fullName}.`)
-    } catch (error) {
-      notify('error', toApiError(error))
-    }
-  }
-
   const handleLogin = async (event) => {
     event.preventDefault()
     try {
@@ -296,19 +285,6 @@ function App() {
     }
   }
 
-  const handleSwitchProfile = (event) => {
-    const userId = Number(event.target.value)
-    if (!userId) {
-      setCurrentUser(null)
-      return
-    }
-    const user = users.find((item) => item.id === userId)
-    if (user) {
-      setCurrentUser(user)
-      notify('info', `Switched to ${user.fullName} for demo review.`)
-    }
-  }
-
   const pendingInbox = inbox.filter((item) => item.status === 'PENDING')
 
   return (
@@ -319,23 +295,21 @@ function App() {
 
       <main className="content-wrap">
         <motion.header className="hero" {...itemAnimation}>
-          <p className="hero-kicker">Minor Project | React + Spring Boot</p>
+          <p className="hero-kicker">Peer Learning Platform</p>
           <h1>SkillSwap Nexus</h1>
           <p className="hero-subtitle">
-            A campus time-bank platform where students exchange practical mentoring hours instead of money.
-            Discover high-match peers, publish skills, and close learning loops faster.
+            A structured collaboration network where members exchange real-world expertise through
+            verified, skill-for-skill sessions.
           </p>
 
           <div className="hero-toolbar">
-            <label htmlFor="profile-switch">Demo profile switch</label>
-            <select id="profile-switch" onChange={handleSwitchProfile} value={currentUser?.id ?? ''}>
-              <option value="">Choose profile</option>
-              {communityUsers.map((user) => (
-                <option key={user.id} value={user.id}>
-                  {user.fullName}
-                </option>
-              ))}
-            </select>
+            {currentUser ? (
+              <p className="signed-in">
+                Signed in as <strong>{currentUser.fullName}</strong>
+              </p>
+            ) : (
+              <p className="signed-in">Sign in or create an account to start exchanging skills.</p>
+            )}
             {currentUser ? (
               <button className="ghost-btn" type="button" onClick={() => setCurrentUser(null)}>
                 Logout
@@ -446,21 +420,6 @@ function App() {
                 </button>
               </form>
             )}
-
-            <div className="demo-logins">
-              <p>Quick demo accounts (password: pass1234)</p>
-              <div>
-                <button type="button" onClick={() => handleDemoLogin('anaya@campus.dev')}>
-                  Anaya
-                </button>
-                <button type="button" onClick={() => handleDemoLogin('rehan@campus.dev')}>
-                  Rehan
-                </button>
-                <button type="button" onClick={() => handleDemoLogin('mira@campus.dev')}>
-                  Mira
-                </button>
-              </div>
-            </div>
           </motion.section>
         ) : (
           <>
